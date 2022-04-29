@@ -13,48 +13,67 @@
                 box-sizing: border-box;
                 font-family: Georgia, 'Times New Roman', Times, Courier, monospace;
             }
+            .debutton{
+                border: none;
+                background-color: transparent;
+            }
+
+
             .container{
                 display: grid;
                 background-color: #b9b9b9;
+                /* position: relative; */
 
             }
             nav{
                 display:flex;
                 background-color: darksalmon;
                 align-items: center;
-                position: relative;
             }
             .nav-burger-button{
-                border: none;
-                background-color: transparent;
+
                 font-size: 1rem;
                 font-weight: bold;
-                padding: 0.25rem; 
+                padding: 0.5rem; 
+
             }
             .nav-menu{
                 display: none;
-                text-decoration: none;
-                color: inherit;
                 text-indent: 0;
                 list-style: none;
                 
                 background-color: white;
                 position: absolute;
-                transition: all .4s ease-in-out;
-            }
-            .nav:focus-within .nav-menu, 
-            .nav-burger-button:hover ~.nav-menu{
-                display: block;
-                top: 0.25rem;
-            }
-            .nav-burger-container{
-                position:relative;
+                opacity: 0;
+                
 
+            }
+            .nav-burger-container:focus-within .nav-menu, 
+            .nav-burger-container:hover .nav-menu{
+                display: block;
+                top: 1.5rem;
+                opacity: 1;
+                z-index: 1;
+                transition: all 1s ease-in-out;
+            }
+            .nav-menu li a{
+                text-decoration: none;
+                color: inherit;
+                padding: 1rem;
+            }
+            .nav-menu li{
+                padding-top:0.5rem;
+                padding-bottom:0.5rem;
+            }
+            .nav-menu li:hover{
+                color:white;
+                background-color:darksalmon ;
             }
 
 
             .scrolling{
-                height: 150vh;
+                height: auto;
+                min-height: calc(100vh - 2rem);
                 overflow-y: auto;
                 overflow-x: hidden;
                 position: relative;
@@ -102,17 +121,52 @@
                 font-size: 1.25rem;                
 
             }
-            .d1, .d2, .d3{
+
+            .grid-test-container :nth-child(9n+1),
+            .grid-test-container :nth-child(9n+2),
+            .grid-test-container :nth-child(9n+3){
                 justify-self: end;
                 background-color: rgb(255, 142, 36);
             }
-            .d4, .d5, .d6{
+            .grid-test-container :nth-child(9n+4),
+            .grid-test-container :nth-child(9n+5),
+            .grid-test-container :nth-child(9n+6){
                 justify-self: center;
                 background-color: rgb(255, 255, 41);
             }
-            .d7, .d8, .d9{
+            .grid-test-container :nth-child(9n+7),
+            .grid-test-container :nth-child(9n+8),
+            .grid-test-container :nth-child(9n+9){
                 justify-self: left;
                 background-color: #cdff42;
+            }
+
+            .floatButton{
+                background-color: darksalmon;
+                display:inline-block;
+                position: fixed;
+                margin-left: 2rem;
+                top: 50%;
+                border-radius: 5px;
+            }
+            .button-plus, .button-minus{
+                font-size:2rem;
+                font-family: monospace;
+                padding:.25rem .50rem;
+            }
+
+            @media screen and (min-width:76.25em){
+                .nav-burger-button{
+                    display: none;
+                }
+                .nav-menu{
+                    display:flex;
+                    opacity: 1;
+                    width: fit-content;
+                    position: relative;
+                    background-color: transparent;
+                }
+                
             }
         </style>
     </head>
@@ -124,18 +178,25 @@
         
         
         <div class="nav-burger-container">
-            <button class="nav-burger-button">&#8801</button>
-            <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="https://google.com/ncr">Google</a></li>
-                <li><a href="#">Cats</a></li>
-            </ul>
+            <button class="nav-burger-button debutton">&#8801</button>
+                <ul class="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="https://google.com/ncr">Google</a></li>
+                    <li><a href="#">Cats</a></li>
+                </ul>
         </div>
+
     </nav>
     <div class="scrolling">
         <!-- <img src="coffee.jpg"> -->
         <h2>Welcome!</h2>
         <div class="scrolling__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius dolore quo, exercitationem est doloremque vero, aperiam accusantium debitis magni eos sapiente incidunt at ducimus, voluptatum labore! Dolor aliquid minus reprehenderit aut cumque deserunt tempore ea et, iste officiis porro ex aliquam voluptates, culpa optio eveniet beatae! Cupiditate obcaecati voluptas quasi!</div>
+        
+        <div class="floatButton">
+            <button class="button-minus debutton">-</button>
+            <button class="button-plus debutton">+</button>
+        </div>
+        
         <div class="grid-test-container">
             <div class="grid-test d1">1</div>
             <div class="grid-test d2">2</div>
@@ -150,22 +211,31 @@
     </div>
 </div>
 
+
 <script>
     //dynamic row adding
+    function gridDivCount(){
+        let divCount= document.getElementsByClassName('grid-test').length;
+        return parseInt(divCount);
+    }
     function addDiv(){
-        let divCount= document.getElementsByClassName('grid-test');
-        console.log(divCount.length);
-
         let newDiv=document.createElement('div');
-        newDiv.classList.add('grid-test', `d${divCount.length+1}`);
-        newDiv.innerText=divCount.length+1;
+        newDiv.classList.add('grid-test', `d${parseInt(gridDivCount())+1}`);
+        newDiv.innerText=parseInt(gridDivCount())+1;
 
-        let row= divCount.length+1-2/3;
-        
         document.querySelector('.grid-test-container').append(newDiv);
     }
+    //dynamic row removing
+    function removeDiv(){
+        let toBeRemoved=document.getElementsByClassName('grid-test')[gridDivCount()-1];
+        document.querySelector('.grid-test-container').removeChild(toBeRemoved);
+    }
 
-    addDiv();
+    document.getElementsByClassName('button-plus')[0].addEventListener('click', addDiv);
+    document.getElementsByClassName('button-minus')[0].addEventListener('click', removeDiv);
+
+
+
 </script>
 
         <!-- <div class="container">
