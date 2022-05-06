@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            box-sizing: border-box;
+        }
+        *{
+            box-sizing: inherit;
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+
+
+            perspective: 10px;
+            display:flex;
+            align-items: center;
+        }
+        .moving-part{
+            position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+
+            height: 100%;
+            transform-style: preserve-3d;
+            z-index: -1;
+            
+        }
+        img{
+            position: absolute;
+            z-index: -1;
+            object-fit: cover;
+        }
+        .img-back{
+            transform: translateZ(-10px) scale(2);
+            
+        }
+        .img-fore{
+            transform: translateZ(-5px);
+            top:50%;
+            left:50%;
+        }
+        h2{
+            
+            transform: translateZ(5px);
+            position: absolute;
+            left:50%;
+            z-index: 0;
+            text-shadow: 0 0 5 white;
+        }
+        
+        .section{
+            font-size: 1.5em;
+            background-color: #444;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="moving-part">
+            <img src="coffee.jpg" alt="" class="img-back">
+            <img src="cup.png" alt="" width="200px" height="200px" class="img-fore">
+            <h2>Easy Peasy</h2>
+        </div>
+        <div class="section">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, architecto inventore eveniet error quasi repellendus voluptatum obcaecati quas, maiores totam voluptates saepe, dolores ratione laborum sunt repudiandae cupiditate quam ut excepturi dolorem debitis id! Culpa quam fuga minus, beatae, dolorem reprehenderit ad itaque tenetur libero dolore totam voluptatum nemo corrupti atque ab quasi laudantium recusandae.</div>
+    </div>
+   
+</body>
+</html>
