@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            :root{
+                box-sizing: border-box;
+                --size-w:20rem;
+                --size-h:20rem;
+
+                --size-lid: calc( (var(--size-h) / 5) * 2 );
+                --size-box: calc( (var(--size-h) / 5) * 3 );
+                --size-width: calc( (var(--size-w) / 5 ) * 4 );
+            }
+            *{
+                box-sizing: inherit;
+                padding: 0;
+                margin: 0;
+            }
+            .container{
+                height: 100vh;
+                width: 100%;
+                background-color: rgb(145, 162, 238);
+                background:linear-gradient(to right, rgba(255, 255, 255, 0) 50%, black 50%, rgba(255,0,0,0) calc(50% + 1px)),
+                            linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, black 50%,  rgba(255,0,0,0) calc(50% + 1px));
+                position: relative;
+                perspective: var(--size-h);
+                transform-style: preserve-3d;
+                transform: rotateY(45deg);
+            }
+            .box{
+                background: repeating-linear-gradient(to top, #b87527 0%, #f3c651 32%, #1e0907 33%);
+                width: var(--size-width);
+                height: var(--size-box);
+                position: absolute;
+                top:50%;
+                left:50%;
+                transform: translateX(-50%) translateY(1.9rem)translateZ(2.7rem);
+
+            }
+            .lid{
+                background: repeating-linear-gradient(to top, #b87527 0%, #f3c651 49%, #1e0907 50%);
+                width: var(--size-width);
+                height: var(--size-lid); 
+                position: absolute;
+
+                top: 50%;
+                left:50%;
+                transform: translateX(-50%) translateY(-5rem)  rotateX(45deg);
+                perspective: 10px;
+            }
+            .lid2{
+                background: repeating-linear-gradient(to top, #b87527 0%, #f3c651 49%, #1e0907 50%);
+                width: var(--size-width);
+                height: var(--size-lid); 
+                position: absolute;
+
+                top: 50%;
+                left:50%;
+                transform: translateX(-50%) translateY(-5rem) translateZ(-6rem)  rotateX(-45deg);
+                perspective: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="lid"></div>
+            <div class="lid2"></div>
+            <div class="box"></div>
+        </div>
+    </body>
+</html>
