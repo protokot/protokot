@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .parent{
+                position: relative;
+                width: 10rem;
+                height: 10rem;
+                transform-style: preserve-3d;
+                transform: rotateY(30deg) rotateX(10deg);
+                margin: auto;
+                margin-top: 2rem;
+                perspective: 50em;
+                perspective-origin: center center;
+                
+            }
+            .parent:hover{
+                perspective-origin: left 500px;
+                transition: all 1s linear;
+            }
+            .parent div{
+                position: absolute;
+                width: 6rem;
+                height: 6rem;
+                display: grid;
+                place-items: center center;
+                transform-origin: center center;
+            }
+            .side1{
+                background-color: lightcyan;
+                transform: /*rotateY(0deg)*/ translateZ(3rem);
+            }
+            .side2{
+                background-color: lightblue;
+                transform: rotateY( 90deg)   translateZ(3rem);
+            }
+            .side3{
+                background-color: lightgoldenrodyellow;
+                transform: rotateY(180deg)   translateZ(3rem);
+            }
+            .side4{
+                background-color: lightsalmon;
+                transform: rotateY(270deg)   translateZ(3rem);
+            }
+            .side5{
+                background-color: limegreen;
+                transform: rotateX(90deg) translateZ(-3rem);
+            }
+            .side6{
+                background-color: lightpink;
+                transform: rotateX(90deg) translateZ(3rem);
+            }
+
+
+            .another{
+                /* background-color: #f1f1f1; */
+                width: 600px;
+                height: 600px;
+                perspective: 600px;
+                perspective-origin: center;
+                position: relative;
+                transform-style: preserve-3d;
+
+            }
+            .face{
+                border: 1px black solid;
+                position: absolute;
+                top: calc( 50% - 50px);
+                left: calc( 50% - 50px);
+                
+                width: 100px;
+                height: 100px;
+                opacity: 0.8;
+                display: grid;
+                place-items: center;
+            }
+            .front{
+                background-color: rgba(153, 116, 116, 0.1);
+                /* opacity: 1; */
+                transform: translateZ(50px);
+            }
+            .back{
+                background-color: yellow;
+                transform: translateZ(-50px);
+            }
+            .top{
+                background-color: red;
+                transform: rotateX(90deg) translateZ(50px);
+            }
+            .bottom{
+                background-color: blue;
+                transform: rotateX(90deg) translateZ(-50px);
+            }
+            .left{
+                transform: rotateY(90deg) translateZ(-50px);
+            }
+            .right{
+                transform: rotateY(90deg) translateZ(50px);
+                background-color: none;
+            }
+            .another:hover .face{
+                animation: float 5s linear;
+            }
+            @keyframes float{
+                0%{top:calc( 50% - 50px);}
+                49%{opacity: 1;}
+                50%{top:calc(0% -  100px); opacity: 0;}
+                51%{top:calc(100% - 1px);}
+                52%{opacity: 1;}
+                100%{top:calc( 50% - 50px);}
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent">
+            <div class="side1">1</div>
+            <div class="side2">2</div>
+            <div class="side3">3</div>
+            <div class="side4">4</div>
+            <div class="side5">5</div>
+            <div class="side6">6</div>
+        </div>
+
+        <div class="another">
+            <div class="face front">front</div>
+            <div class="face back">back</div>
+            <div class="face top">top</div>
+            <div class="face bottom">bottom</div>
+            <div class="face left">left</div>
+            <div class="face right">right</div>
+        </div>
+    </body>
+</html>

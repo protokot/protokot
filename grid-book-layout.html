@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .columns{
+                display:grid;
+                grid-template-columns: 1fr 3fr 4fr;
+                grid-template-rows: 1fr 2fr 2fr;
+                height: 100vh;
+            }
+            .column1{
+                grid-column: 1 / 2;
+                /* transform-origin: 0 0;
+                transform: rotate(90deg); */
+                writing-mode: sideways-lr;
+                width: fit-content;
+                font-size: 5rem;
+                color: transparent;
+                background: linear-gradient(to top, white 0%, #1e0907 50%);
+                background-clip: text;
+                /* background-color: white; */
+            }
+            .column2{
+                grid-column: 2/3;
+            }
+            .intro{
+                font-size: 1.2rem;
+                line-height: 2rem;
+                font-weight: lighter;
+                margin: auto 2rem ;
+                display: inline-block;
+            }
+            .column3{
+                grid-column: 3/4;
+            }
+            .column3 > img{
+                width: 100%;
+            }
+
+            @media screen and (max-width: 768px){
+                .column3{
+                    grid-column: 1/4;
+                }
+                .column1{
+                    grid-row: 1; 
+                    height: min-content;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="columns">
+            <h1 class="column1">Vanish for Good</h1>
+            <div class="column2">
+                <span class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nam possimus consequuntur laudantium rem excepturi officia accusamus dicta, iste vel quis incidunt, doloribus odio vero!</span>
+                <div class="article"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ac commodo est. Nunc gravida in leo et tincidunt. Proin at faucibus massa. Pellentesque placerat facilisis leo, nec consequat justo laoreet nec. Sed vitae enim eros. Praesent consequat ex in elit maximus viverra. Sed imperdiet accumsan quam, quis viverra justo aliquet sed. Proin mattis eleifend nunc ac varius. Cras lobortis velit id tellus blandit, at blandit nisl malesuada. Suspendisse nec fringilla justo. Vivamus id leo sit amet ex vestibulum mattis.
+
+                    Integer ac tortor pretium sapien porta pulvinar et a risus. Vestibulum maximus elit mauris. Etiam enim tortor, tincidunt vel orci ac, rhoncus sollicitudin felis. Mauris rhoncus tellus at arcu condimentum, quis elementum neque hendrerit. Integer tortor justo, ultrices tristique nisl sit amet, pulvinar euismod lacus. Donec faucibus, nunc in sollicitudin euismod, augue purus sollicitudin ante, sit amet varius sapien erat vel sem. Morbi ac magna at libero egestas faucibus nec eu ante. </div>
+            </div>
+            <div class="column3">
+                <img src="img/coffee.jpg">
+                <aside>
+                    Extradition
+                </aside>
+            </div>
+        </div>
+    </body>
+</html>
